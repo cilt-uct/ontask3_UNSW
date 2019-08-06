@@ -12,8 +12,6 @@ services:
   db:
     restart: always
     image: mongo:4
-    ports:
-      - "27017:27017"
     volumes:
       - ./data/nosql:/data/db
 
