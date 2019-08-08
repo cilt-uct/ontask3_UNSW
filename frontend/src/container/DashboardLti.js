@@ -2,22 +2,11 @@ import React from "react";
 import {
   Layout,
   Icon,
-  Button,
   Spin,
-  Modal,
-  Select,
-  Tooltip,
-  List,
   Collapse,
   notification,
-  Menu,
-  Card
+  Menu
 } from "antd";
-import _ from "lodash";
-
-import ContainerModal from "./ContainerModal";
-import ContainerShare from "./ContainerShare";
-import AccessListModal from "./AccessListModal";
 
 import DatasourceTab from "./tabs/DatasourceTab";
 import DataLabTab from "./tabs/DataLabTab";
@@ -30,7 +19,6 @@ import apiRequest from "../shared/apiRequest";
 import "./Container.css";
 
 const { Content } = Layout;
-const Panel = Collapse.Panel;
 
 class DashboardLti extends React.Component {
   state = {
@@ -138,8 +126,7 @@ class DashboardLti extends React.Component {
   };
 
   ContainerList = () => {
-    const { history } = this.props;
-    const { accordionKey, tabKey, dashboard } = this.state;
+    const {tabKey, dashboard } = this.state;
 
     return (
       <div>
@@ -221,11 +208,7 @@ class DashboardLti extends React.Component {
     const { history } = this.props;
     const {
       fetching,
-      dashboard,
-      container,
-      sharing,
-      lti,
-      accessList
+      dashboard
     } = this.state;
 
     return (
