@@ -3,7 +3,6 @@ import {
   Layout,
   Icon,
   Spin,
-  Collapse,
   notification,
   Menu
 } from "antd";
