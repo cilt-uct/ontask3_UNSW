@@ -53,6 +53,21 @@ def Dashboard(request):
     return Response(response)
 
 
+@api_view(["GET"])
+def DashboardLti(request):
+    print(request.data)
+    container = Container.objects.get(lti_context=request.data['lti_context'])
+
+    serializer = DashboardSerializer(
+        container,
+        context={
+            "has_full_permission": container.has_full_permission(request.user),
+        },
+    )
+
+    return Response(serializer)
+
+
 @api_view(["POST"])
 @permission_classes([CanCreateObjects])
 def CreateContainer(request):

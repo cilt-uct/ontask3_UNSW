@@ -12,6 +12,7 @@ import { requestToken } from "./auth/AuthActions";
 
 import Login from "./auth/Login";
 import Dashboard from "./container/Dashboard";
+import DashboardLti from "./container/DashboardLti";
 import Datasource from "./datasource/Datasource";
 import DataLab from "./dataLab/DataLab";
 import Action from "./action/Action";
@@ -193,6 +194,13 @@ class App extends React.Component {
             component: Dashboard,
             componentProps: { ltiResourceId, ltiContainerId }
           })}
+
+          {this.AuthenticatedRoute({
+            path: "/dashboard/lti",
+            component: DashboardLti,
+            componentProps: { ltiResourceId, ltiContainerId }
+          })}
+
 
           {this.AuthenticatedRoute({
             path: "/datasource/:id?",
