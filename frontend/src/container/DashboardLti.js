@@ -45,7 +45,7 @@ class DashboardLti extends React.Component {
   fetchDashboard = () => {
     this.setState({ fetching: true });
 
-    apiRequest(`/dashboard/lti`, {
+    apiRequest(`/dashboard/lti/`, {
       method: "GET",
       onSuccess: dashboard => {
         let accordionKey = sessionStorage.getItem("accordionKey");

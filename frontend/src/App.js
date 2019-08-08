@@ -184,7 +184,7 @@ class App extends React.Component {
               !hasToken ? (
                 <Login onLogin={() => this.setState({ hasToken: true })} />
               ) : (
-                <Redirect to={redirectTo ? redirectTo : "/dashboard"} />
+                <Redirect to={redirectTo ? redirectTo : "/dashboard/lti"} />
               )
             }
           />

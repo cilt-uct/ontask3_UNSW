@@ -217,7 +217,7 @@ class LTIAuth(APIView):
                     container.save()
 
             return redirect(
-                FRONTEND_DOMAIN + "/dashboard/lti" + "?tkn=" + token
+                FRONTEND_DOMAIN + "?tkn=" + token + "&container=" + str(container.id)
             )
         except:
             if LTI_CONFIG.get("auto_create_share_containers"):
@@ -230,7 +230,7 @@ class LTIAuth(APIView):
                 container.save()
 
             return redirect(
-                FRONTEND_DOMAIN + "/dashboard/lti" + "?tkn=" + token
+                FRONTEND_DOMAIN + "?tkn=" + token + "&lti=" + lti_resource_id
             )
 
 
