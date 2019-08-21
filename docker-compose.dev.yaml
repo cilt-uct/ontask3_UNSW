@@ -1,6 +1,14 @@
 version: '3'
 
 services:
+  rabbitmq_dev:
+    restart: always
+    image: rabbitmq:3.7
+    environment:
+      - RABBITMQ_MNESIA_BASE=/var/lib/rabbitmq_dev/mnesia
+    volumes:
+      - ./data/rabbitmq_dev:/var/lib/rabbitmq_dev/mnesia
+
   db_dev:
     restart: always
     image: mongo:4
@@ -29,6 +37,7 @@ services:
     volumes:
       - ./backend:/backend
     depends_on:
+      - rabbitmq_dev
       - backend_dev
     environment:
       - LOG_STREAM=Celery
