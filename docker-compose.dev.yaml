@@ -5,9 +5,11 @@ services:
     restart: always
     image: rabbitmq:3.7
     environment:
-      - RABBITMQ_MNESIA_BASE=/var/lib/rabbitmq_dev/mnesia
+      - RABBITMQ_MNESIA_BASE=/var/lib/rabbitmq/mnesia
     volumes:
-      - ./data/rabbitmq_dev:/var/lib/rabbitmq_dev/mnesia
+      - ./data/rabbitmq_dev:/var/lib/rabbitmq/mnesia
+    networks:
+      - ontask_dev
 
   db_dev:
     restart: always
@@ -17,6 +19,8 @@ services:
       - "27018:27018"
     volumes:
       - ./data/nosql:/data/db
+    networks:
+      - ontask_dev
 
   backend_dev:
     restart: always
@@ -30,6 +34,8 @@ services:
     environment:
       - LOG_STREAM=Django
     command: uwsgi --ini uwsgi.ini --lazy-apps
+    networks:
+      - ontask_dev
 
   celery_dev:
     restart: always
@@ -42,6 +48,8 @@ services:
     environment:
       - LOG_STREAM=Celery
     command: celery worker -A ontask --loglevel=INFO
+    networks:
+      - ontask_dev
 
   celery_beat_dev:
     restart: always
@@ -51,3 +59,9 @@ services:
     environment:
       - LOG_STREAM=CeleryBeat
     command: celery -A ontask beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    networks:
+      - ontask_dev
+
+networks:
+    ontask_dev:
+        driver: bridge
